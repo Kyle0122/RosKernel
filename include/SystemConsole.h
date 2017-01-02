@@ -13,9 +13,10 @@ White	= 0x7,LightWhite	= 0xf,
 } Color;
 
 
-void println();
-void print();
-void printWithColor();
-void scroll(int mode); //mode =1 for PageDown; 2 for PageUp;
+void println(char *message);
+void print(char *message);
+void printWithColor(char *message,char color);
+void clearConsole();
+void scroll(int mode); //mode =1 for PageDown; 2 for PageUp;0 for scroll lines
 
 #endif // SYSTEMCONSOLE_H_
