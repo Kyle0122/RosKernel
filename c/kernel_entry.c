@@ -2,5 +2,6 @@
 
 void kernel_entry(){
 	clearConsole();
-	println("Hello OS");
+	for(int i=0;i<=20;i++)
+	print("Hello OS\n");
 }

@@ -1,7 +1,7 @@
 
-cc = i386-elf-gcc
-ld = i386-elf-ld
-as = i386-elf-nasm
+cc = gcc
+ld = ld
+as = nasm
 
 c_flags =  -c -m32 -Wall -nostdinc -fno-builtin -fno-stack-protector -Iinclude
 
