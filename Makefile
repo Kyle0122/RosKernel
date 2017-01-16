@@ -19,8 +19,14 @@ _start.o : _start.asm
 ./libs/SystemIO.o : ./libs/SystemIO.c
 	$(cc) $(c_flags) ./libs/SystemIO.c -o ./libs/SystemIO.o
 
-kernel.elf : _start.o ./c/kernel_entry.o ./libs/SystemConsole.o ./libs/SystemIO.o kernel.lds
-	$(ld) -T kernel.lds -m elf_i386 -Ttext 0x200000 _start.o ./libs/SystemIO.o ./libs/SystemConsole.o ./c/kernel_entry.o -o kernel.elf
+kernel.elf : _start.o ./c/kernel_entry.o ./libs/SystemConsole.o ./libs/string.o ./libs/SystemIO.o ./libs/elf.o kernel.lds
+	$(ld) -T kernel.lds -m elf_i386 -Ttext 0x200000 _start.o ./libs/SystemIO.o ./libs/SystemConsole.o ./libs/string.o ./c/kernel_entry.o ./libs/elf.o -o kernel.elf
+
+./libs/elf.o : ./libs/elf.c
+	$(cc) $(c_flags) ./libs/elf.c -o ./libs/elf.o
+
+./libs/string.o : ./libs/string.c
+	$(cc) $(c_flags) ./libs/string.c -o ./libs/string.o
 
 run: kernel.elf
 	qemu-system-i386  -kernel kernel.elf
